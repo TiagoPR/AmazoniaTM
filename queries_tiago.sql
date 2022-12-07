@@ -1,3 +1,5 @@
+USE amazonia
+
 # Conhecer o armazém em que o pedido está relacionado – Tigas
 
 DELIMITER &&
@@ -17,5 +19,8 @@ CREATE PROCEDURE items_mais_vendidos ()
 BEGIN 
 select * from pedidos order by Total limit 10;
 END && 
+
+# Obter uma relação entre salário e desempenho de cada funcionarios por tipo – Tigas
+select Funcionario_ID, Salario/Desempenho as Quota from funcionario;
 
 
