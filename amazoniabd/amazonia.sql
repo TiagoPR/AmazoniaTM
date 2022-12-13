@@ -1,5 +1,5 @@
 use Amazonia;
-alter table Funcionario add column data_nascimento date;
+
 CREATE TABLE Pedido (
     ID_Pedido INTEGER PRIMARY KEY,
     Endereco_Entrega VARCHAR(45),
@@ -13,7 +13,7 @@ CREATE TABLE Pedido (
     UNIQUE (ID_Pedido, fk_Cliente_ID_Cliente)
 );
 
-alter table Cliente add column Genero varchar(1);
+
 CREATE TABLE Cliente (
     ID_Cliente INTEGER PRIMARY KEY,
     Nome VARCHAR(45),
@@ -21,8 +21,10 @@ CREATE TABLE Cliente (
     Telemovel INTEGER,
     Metodos_Pagamento VARCHAR(45),
     Rua VARCHAR(45),
-    Cod_Postal INTEGER
+    Cod_Postal varchar(8)
 );
+alter table Cliente add column Genero varchar(1);
+alter table Cliente add column Cod_postal varchar(8);
 
 CREATE TABLE Item (
     Item_ID INTEGER PRIMARY KEY UNIQUE,
@@ -30,7 +32,8 @@ CREATE TABLE Item (
     Tipo VARCHAR(45),
     Descricao VARCHAR(45)
 );
-alter table Item add column Tipo varchar(45);
+#alter table Item add column Tipo varchar(45);
+
 CREATE TABLE Funcionario (
     Funcionario_ID INTEGER PRIMARY KEY,
     Nome VARCHAR(45),
@@ -41,7 +44,9 @@ CREATE TABLE Funcionario (
     fk_Armazem_Armazem_ID INTEGER,
     UNIQUE (Funcionario_ID, fk_Armazem_Armazem_ID)
 );
-
+alter table Funcionario add column data_nascimento date;
+alter table Funcionario add column data_comeco date;
+alter table Funcionario add column genero varchar(1);
 CREATE TABLE Armazem (
     Armazem_ID INTEGER PRIMARY KEY UNIQUE,
     Nome VARCHAR(45),

@@ -108,6 +108,7 @@ insert into Cliente (ID_Cliente,Nome,Email,Telemovel,Rua,Cod_Postal,Genero)
     (37,"Jose veloh","jmveloh@hotmail.com",934719179,"rua da casa nova velha","7113-222","M"),
     (38,"Ana oliveira","analo@hotmail.com",999916999,"rua da oliveira","4115-222","F"),
     (39,"Tiagas Banana","tiagas@hotmail.com",934216999,"rua da casa nova","4715-222","M");
+
 Insert into Cliente(ID_Cliente, Nome, Email,Telemovel,Rua,Cod_Postal,genero)
 values
 (11,"Joao Silva","joao@gmail.com",919123156,"Rua da lagoa","4311-231","M"),
@@ -156,41 +157,11 @@ values
 (36,"rua das ",null,"D",null,"2022-10-01","2022-10-02",22),
 (37,"rua azul",null,"D",null,"2022-03-22","2022-03-31",22);
 
-Insert into contem (fk_Item_Item_ID, fk_Pedido_ID_Pedido, Quantidade, Valor, IVA)
-values
-(12,33,2,30,23),
-(13,33,1,8,23),
-(1,34,1,19,23),
-(10,35,5,150,23),
-(14,35,100,6,1),
-(6,36,1000,650,23),
-(1,37,1,20,23);
-
-Insert into contem (fk_Item_Item_ID, fk_Pedido_ID_Pedido, Quantidade, Valor, IVA)
-values
-(12,32,2,30,23);
-
 Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao,Estado,Data_Entrega,Data_Pedido,Data_Envio,fk_Cliente_ID_Cliente)
 values 
 (1,"Rua Doutor Damasceno Ferreiro","NATAL2023","P",NULL,"2023-01-01",NULL,1),
 (2,"Rua da ponte",NULL,"E","2023-01-03","2023-01-02","2023-01-03",2);
 
-Insert into contem (fk_Item_Item_ID, fk_Pedido_ID_Pedido, Quantidade, Valor, IVA)
-values
-(1,1,2,22,10),
-(2,1,1,100,11),
-(3,2,1,15,12),
-(4,3,5,40,15),
-(5,3,10,65,11),
-(6,4,1,620,10),
-(17,4,1,20,7),
-(18,5,10,35,9),
-(19,5,10,10,11),
-(20,6,10,31,10),
-(16,7,50,240,20),
-(15,8,2,40,20),
-(14,9,100,7,18),
-(13,10,100,8,16);
 
 
 Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao,Estado,Data_Entrega,Data_Pedido,Data_Envio,fk_Cliente_ID_Cliente)
@@ -241,10 +212,26 @@ values
 (31,'Rua Antonio Padre Vieira','NATAL2023','P',NULL,NULL,"2022-12-31",NULL,31);
 
 
-
 Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao, Estado,  Data_Entrega, Data_Pedido, Data_envio, fk_Cliente_ID_Cliente)
 values
 (32,"rua das flores novas",null,"P",null,"2021-01-01",null,1);
+
+Insert into contem (fk_Item_Item_ID, fk_Pedido_ID_Pedido, Quantidade, Valor, IVA)
+values
+(1,1,2,22,10),
+(2,1,1,100,11),
+(3,2,1,15,12),
+(4,3,5,40,15),
+(5,3,10,65,11),
+(6,4,1,620,10),
+(17,4,1,20,7),
+(18,5,10,35,9),
+(19,5,10,10,11),
+(20,6,10,31,10),
+(16,7,50,240,20),
+(15,8,2,40,20),
+(14,9,100,7,18),
+(13,10,100,8,16);
 
 Insert into contem (fk_Item_Item_ID, fk_Pedido_ID_Pedido, Quantidade, Valor, IVA)
 values
@@ -281,6 +268,20 @@ values
 (6,22,1,600,23),
 (14,31,3,15,2),
 (19,28,10,100,7);
+
+Insert into contem (fk_Item_Item_ID, fk_Pedido_ID_Pedido, Quantidade, Valor, IVA)
+values
+(12,33,2,30,23),
+(13,33,1,8,23),
+(1,34,1,19,23),
+(10,35,5,150,23),
+(14,35,100,6,1),
+(6,36,1000,650,23),
+(1,37,1,20,23);
+
+Insert into contem (fk_Item_Item_ID, fk_Pedido_ID_Pedido, Quantidade, Valor, IVA)
+values
+(12,32,2,30,23);
 
 insert into possui (pos,stock,fk_Armazem_Armazem_ID,fk_Item_Item_ID)
 values
