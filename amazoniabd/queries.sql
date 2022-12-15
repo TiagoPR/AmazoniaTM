@@ -1,9 +1,6 @@
 use Amazonia;
 
 
-
-
-
 select Funcionario_ID from Funcionario where Funcionario_ID = fk_Funcionario_Funcionario_ID;
 
 Delimiter &&
@@ -13,14 +10,9 @@ SELECT Nome FROM Funcionario where fk_Pedido_ID_Pedido = id_ped;
 END &&
 delimiter ;
 
-
 select Nome from Funcionario order by desempenho desc;
 
 select count(Descricao),fk_Item_Item_ID from Item, contem where Item_ID = fk_Item_Item_ID;
-
-
-
-
 
 create view top_gastos as
 select fk_Cliente_ID_Cliente, sum(total) as gasto
@@ -29,7 +21,6 @@ group by fk_Cliente_ID_Cliente;
 drop view precoV;
 create view precoV as
 select fk_Pedido_ID_Pedido,v*c as gasto
-w
 from contem
 where fk_Pedido_ID_Pedido = 35
 group by fk_Pedido_ID_Pedido;
@@ -56,6 +47,7 @@ delimiter ;
 
 select * from Pedido;
 
+select * from contem;
 
 select quantidade as q ,valor as v from contem where fk_Pedido_ID_Pedido = 1;
 SELECT *
@@ -64,15 +56,11 @@ Group By fk_Armazem_Armazem_ID
 ORDER BY fk_Armazem_Armazem_ID
 delimiter ;
 
-
 select quantidade as q ,valor as v ,fk_Pedido_ID_Pedido as ped from contem where fk_Pedido_ID_Pedido = x group by pedido;
 
-update pedido set valor = q*v where Pedido_ID = ped where;
 select quantidade as q from contem where fk_Pedido_ID_Pedido = 34;
 
-
 select Funcionario_ID, Salario/Desempenho as Quota from Funcionario;
-
 
 update Pedido set total = (select sum(quantidade*valor) as val from contem where fk_Pedido_ID_Pedido = 1) where ID_Pedido = 1;
 
@@ -82,5 +70,18 @@ select sum(quantidade*valor) as val from contem where fk_Pedido_ID_Pedido = 1;
 
 update Pedido set total = (select sum(quantidade*valor) as val from contem where fk_Pedido_ID_Pedido = 32) where ID_Pedido = 32;
 
-
 select Desempenho from Funcionario;
+
+# Trigger sempre que adicionado pedido atualiza o campo `valor`
+delimiter &&
+CREATE TRIGGER amazonia.total
+AFTER
+INSERT ON contem  for each row
+begin
+declare total int;
+select Total into total from pedido where NEW.fk_Pedido_ID_Pedido = id_pedido;
+update pedido set Total = (select sum(valor * quantidade) from contem where fk_Pedido_ID_Pedido = NEW.fk_Pedido_ID_Pedido) where ID_Pedido = NEW.fk_Pedido_ID_Pedido;
+END &&
+delimiter ;
+
+drop trigger amazonia.total;

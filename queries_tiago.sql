@@ -5,11 +5,14 @@ USE amazonia
 DELIMITER &&
 CREATE FUNCTION armazem_do_pedido ( id_pedido INT )
 RETURNS INT
+DETERMINISTIC
 BEGIN
    DECLARE funcionario_id INT;
-   SET funcionario_id = (select fk_Funcionario from tem where fk_pedido = id_pedido);
-   RETURN (select fk_Armazem_Funcionario from funcionario where funcionario_id = Funcionario_ID);
+   SET funcionario_id = (select fk_Funcionario_Funcionario_ID from tem where fk_Pedido_ID_Pedido = id_pedido);
+   RETURN (select fk_Armazem_Armazem_ID from funcionario where funcionario_id = Funcionario_ID);
 END; &&
+
+drop function armazem_do_pedido
 
 
 # Identificar os items mais vendidos – Tigas

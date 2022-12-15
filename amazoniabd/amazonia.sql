@@ -1,3 +1,5 @@
+create schema Amazonia;
+drop schema amazonia;
 use Amazonia;
 
 CREATE TABLE Pedido (
@@ -24,7 +26,6 @@ CREATE TABLE Cliente (
     Cod_Postal varchar(8)
 );
 alter table Cliente add column Genero varchar(1);
-alter table Cliente add column Cod_postal varchar(8);
 
 CREATE TABLE Item (
     Item_ID INTEGER PRIMARY KEY UNIQUE,
