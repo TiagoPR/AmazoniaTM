@@ -1,5 +1,4 @@
 create schema Amazonia;
-drop schema amazonia;
 use Amazonia;
 
 CREATE TABLE Pedido (
@@ -119,3 +118,15 @@ ALTER TABLE possui ADD CONSTRAINT FK_possui_2
     FOREIGN KEY (fk_Item_Item_ID)
     REFERENCES Item (Item_ID)
     ON DELETE RESTRICT;
+    
+# Trigger sempre que adicionado pedido atualiza o campo `valor`
+delimiter &&
+CREATE TRIGGER amazonia.total
+AFTER
+INSERT ON contem  for each row
+begin
+declare total int;
+select Total into total from pedido where NEW.fk_Pedido_ID_Pedido = id_pedido;
+update pedido set Total = (select sum(valor * quantidade) from contem where fk_Pedido_ID_Pedido = NEW.fk_Pedido_ID_Pedido) where ID_Pedido = NEW.fk_Pedido_ID_Pedido;
+END &&
+delimiter ;

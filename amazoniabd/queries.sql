@@ -71,17 +71,3 @@ select sum(quantidade*valor) as val from contem where fk_Pedido_ID_Pedido = 1;
 update Pedido set total = (select sum(quantidade*valor) as val from contem where fk_Pedido_ID_Pedido = 32) where ID_Pedido = 32;
 
 select Desempenho from Funcionario;
-
-# Trigger sempre que adicionado pedido atualiza o campo `valor`
-delimiter &&
-CREATE TRIGGER amazonia.total
-AFTER
-INSERT ON contem  for each row
-begin
-declare total int;
-select Total into total from pedido where NEW.fk_Pedido_ID_Pedido = id_pedido;
-update pedido set Total = (select sum(valor * quantidade) from contem where fk_Pedido_ID_Pedido = NEW.fk_Pedido_ID_Pedido) where ID_Pedido = NEW.fk_Pedido_ID_Pedido;
-END &&
-delimiter ;
-
-drop trigger amazonia.total;
