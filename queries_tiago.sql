@@ -31,16 +31,16 @@ DELIMITER &&
 CREATE PROCEDURE funcionarios_com_mais_pedidos ()
 BEGIN 
 #select fk_Funcionario_Funcionario_ID, count(fk_Pedido_ID_Pedido) from tem order by count(fk_Pedido_ID_Pedido) limit 10;
-SELECT 
+select 
     F.Funcionario_ID, 
     COUNT(T.fk_Pedido_ID_Pedido) AS TotalPedidos
-FROM 
+from 
 	funcionario  F 
-LEFT JOIN 
+left join 
 	tem  T
-ON 
+on 
 	T.fk_Funcionario_Funcionario_ID = F.Funcionario_ID
-GROUP BY 
+group by 
     F.Funcionario_ID 
 order by
 	TotalPedidos DESC;
