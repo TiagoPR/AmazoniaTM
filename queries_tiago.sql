@@ -7,7 +7,9 @@ RETURNS INT
 DETERMINISTIC
 BEGIN
    DECLARE funcionario INT;
+   # σ ROWNUM() > 0 and ROWNUM() ≤ 1 π fk_Pedido_ID_Pedido σ fk_Pedido_ID_Pedido = id_pedido tem
    SET funcionario = (select fk_Funcionario_Funcionario_ID from tem where fk_Pedido_ID_Pedido = id_pedido limit 1); # porque tem 3 funcionarios em 1 pedido
+   # π fk_Armazem_Armazem_ID σ Funcionario_ID = funcionario funcionario
    RETURN (select fk_Armazem_Armazem_ID from funcionario where Funcionario_ID = funcionario);
 END; &&
 
@@ -19,18 +21,37 @@ drop function armazem_do_pedido
 # Identificar os items mais vendidos – Tigas
 DELIMITER && 
 CREATE PROCEDURE items_mais_vendidos ()
+# τ TotalItems desc π I.Item_ID, TotalPedidos γ I.Item_ID; SUM(C.Quantidade)→TotalItems 
+# ( ρ I item left outer join C.fk_Item_Item_ID = I.Item_ID ρ C contem )
 BEGIN 
-select * from pedidos order by Total limit 10;
+select 
+    I.Item_ID, 
+    SUM(C.Quantidade) AS TotalItems
+from 
+	item  I 
+left join 
+	contem  C
+on 
+	C.fk_Item_Item_ID = I.Item_ID
+group by 
+    I.Item_ID 
+order by
+	TotalItems DESC;
 END && 
 
+select * from contem;
+# drop procedure items_mais_vendidos;
+
 # Obter uma relação entre salário e desempenho de cada funcionarios por tipo – Tigas
+# π Funcionario_ID, Salario / Desempenho → Quota funcionario
 select Funcionario_ID, Salario/Desempenho as Quota from funcionario;
 
 # Funcionarios com mais pedidos associados
 DELIMITER && 
 CREATE PROCEDURE funcionarios_com_mais_pedidos ()
 BEGIN 
-#select fk_Funcionario_Funcionario_ID, count(fk_Pedido_ID_Pedido) from tem order by count(fk_Pedido_ID_Pedido) limit 10;
+# τ TotalPedidos desc π F.Funcionario_ID, TotalPedidos γ F.Funcionario_ID; COUNT(T.fk_Pedido_ID_Pedido)→TotalPedidos 
+# ( ρ F funcionario left outer join T.fk_Funcionario_Funcionario_ID = F.Funcionario_ID ρ T tem )
 select 
     F.Funcionario_ID, 
     COUNT(T.fk_Pedido_ID_Pedido) AS TotalPedidos
