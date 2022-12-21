@@ -28,6 +28,7 @@ delimiter ;
 
 #Breno
 
+#πfk_Pedido_ID_Pedido (σ fk_Funcionario_Funcionario_ID = id_func (tem)) com qualquer id_func, essa procedure diz a quais pedidos um funcionario esta relacionado
 delimiter &&
 CREATE PROCEDURE `new_procedure` (IN id_func INT)
 BEGIN
@@ -35,6 +36,7 @@ SELECT fk_Pedido_ID_Pedido FROM tem where fk_Funcionario_Funcionario_ID = id_fun
 END &&
 delimiter ;
 
+# π count(*) (Cliente) , diz o número de clientes da empresa
 SELECT COUNT(*)
 FROM Cliente;
 
