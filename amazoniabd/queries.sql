@@ -51,7 +51,7 @@ delimiter ;
 
 
 
-
+#(ρ q←quantidade v<- valor(π quantidade , valor (σ 1 = fk_Pedido_ID_Pedido (contem)))
 select quantidade as q ,valor as v from contem where fk_Pedido_ID_Pedido = 1;
 SELECT *
 FROM possui
@@ -61,10 +61,8 @@ delimiter ;
 
 select quantidade as q ,valor as v ,fk_Pedido_ID_Pedido as ped from contem where fk_Pedido_ID_Pedido = x group by pedido;
 
-#(ρ q←quantidade (π Name (σ 34 = fk_Pedido_ID_Pedido (Employee)))
+#(ρ q←quantidade (π quantidade (σ 34 = fk_Pedido_ID_Pedido (contem)))
 select quantidade as q from contem where fk_Pedido_ID_Pedido = 34;
-
-select Funcionario_ID, Salario/Desempenho as Quota from Funcionario;
 
 update Pedido set total = (select sum(quantidade*valor) as val from contem where fk_Pedido_ID_Pedido = 1) where ID_Pedido = 1;
  
