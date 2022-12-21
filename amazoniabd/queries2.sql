@@ -64,13 +64,7 @@ delimiter ;
 
 
 
-#π Nome (σ fk_Pedido_ID_Pedido = id_pedc (Funcionario)) com qualquer id_ped, essa procedure diz a quais funcionarios esta relacionado um pedido
-Delimiter &&
-CREATE PROCEDURE `PedFunc` (IN id_ped INT)
-BEGIN
-SELECT Nome FROM Funcionario where fk_Pedido_ID_Pedido = id_ped;
-END &&
-delimiter ;
+
 
 select Nome from Funcionario order by desempenho desc;
 
