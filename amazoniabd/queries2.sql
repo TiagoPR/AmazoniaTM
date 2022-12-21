@@ -17,7 +17,6 @@ WHERE a.Armazem_ID = '2';
 
 #Tigas
 
-select Funcionario_ID, Salario/Desempenho as Quota from Funcionario;
 
 DELIMITER && 
 CREATE PROCEDURE items_mais_vendidos ()
