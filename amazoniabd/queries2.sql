@@ -28,6 +28,11 @@ delimiter ;
 
 #Breno
 
+Select sum(p.total) From Pedido p INNER JOIN tem t ON p.id_pedido=t.fk_pedido INNER JOIN Funcionario f ON t.fk_Funcionario=f.Funcionario_ID INNER JOIN Armazem a ON f.Armazem_Funcinario=a.Armazem_ID
+GROUP BY a.Armazem_ID 
+ORDER BY a.Armazem_ID
+
+
 #πfk_Pedido_ID_Pedido (σ fk_Funcionario_Funcionario_ID = id_func (tem)) com qualquer id_func, essa procedure diz a quais pedidos um funcionario esta relacionado
 delimiter &&
 CREATE PROCEDURE `new_procedure` (IN id_func INT)
