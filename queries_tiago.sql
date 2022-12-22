@@ -2,7 +2,7 @@ USE amazonia
 
 # Conhecer o armazém em que o pedido está relacionado – Tigas
 DELIMITER &&
-CREATE FUNCTION armazem_do_pedido ( id_pedido INT )
+CREATE FUNCTION armazem_do_pedido ( id_ped INT )
 RETURNS INT
 DETERMINISTIC
 BEGIN
@@ -11,6 +11,8 @@ BEGIN
    SET funcionario = (select fk_Funcionario_Funcionario_ID from tem where fk_Pedido_ID_Pedido = id_pedido limit 1); # porque tem 3 funcionarios em 1 pedido
    # π fk_Armazem_Armazem_ID σ Funcionario_ID = funcionario funcionario
    RETURN (select fk_Armazem_Armazem_ID from funcionario where Funcionario_ID = funcionario);
+   # π fk_Armazem_Armazem_ID σ ID_Pedido = id_ped pedido
+   select fk_Armazem_Armazem_ID from pedido where ID_Pedido = id_ped;
 END; &&
 
 select * from funcionario
