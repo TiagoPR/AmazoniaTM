@@ -66,9 +66,10 @@ delimiter ;
 
 
 
-
+#τ desempenho desc(π Nome desempenho (Funcionario))
 select Nome from Funcionario order by desempenho desc;
 
+#τ count(Item_ID) desc (π Descricao, count(Item_ID) (ρ a (Item) ⨝ a.Item_ID = b.fk_Item_Item_ID ( ρ b ( contem ) )))
 SELECT Descricao, count(Item_ID)
 FROM Item
 INNER JOIN contem ON contem.fk_Item_Item_ID = Item.Item_ID 
@@ -78,7 +79,16 @@ order by count(Item_ID) desc;
 select count(fk_Item_Item_ID) from contem where fk_Item_Item_ID = Item_ID;
 
 
+#------------------------------------------------------------------
 
+select sum(total),Armazem_ID
+from Pedido
+inner join Armazem on Pedido.fk_Armazem_Armazem_ID = Armazem.Armazem_ID
+group by Armazem.Armazem_ID
+order by sum(total) desc;
 
-
-
+select count(ID_Pedido), Armazem_ID
+from Pedido
+inner join Armazem on Pedido.fk_Armazem_Armazem_ID = Armazem.Armazem_ID
+inner join Cliente on Cliente.ID_Cliente = Pedido.fk_Cliente_ID_Cliente
+group by Armazem_ID;
