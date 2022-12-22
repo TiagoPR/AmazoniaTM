@@ -1,4 +1,5 @@
 create schema Amazonia;
+# drop schema Amazonia;
 use Amazonia;
 
 CREATE TABLE Pedido (
@@ -11,7 +12,8 @@ CREATE TABLE Pedido (
     Data_Pedido DATE,
     Data_Envio DATE,
     fk_Cliente_ID_Cliente INTEGER,
-    UNIQUE (ID_Pedido, fk_Cliente_ID_Cliente)
+    fk_Armazem_Armazem_ID integer,
+    UNIQUE (ID_Pedido)
 );
 
 
@@ -83,6 +85,11 @@ ALTER TABLE Pedido ADD CONSTRAINT FK_Pedido_2
     FOREIGN KEY (fk_Cliente_ID_Cliente)
     REFERENCES Cliente (ID_Cliente)
     ON DELETE CASCADE;
+    
+ALTER TABLE Pedido ADD CONSTRAINT FK_Pedido_1
+    FOREIGN KEY (fk_Armazem_Armazem_ID)
+    REFERENCES Armazem (Armazem_ID)
+    ON DELETE CASCADE;
  
 ALTER TABLE Funcionario ADD CONSTRAINT FK_Funcionario_2
     FOREIGN KEY (fk_Armazem_Armazem_ID)
@@ -121,12 +128,12 @@ ALTER TABLE possui ADD CONSTRAINT FK_possui_2
     
 # Trigger sempre que adicionado pedido atualiza o campo `valor`
 delimiter &&
-CREATE TRIGGER amazonia.total
+CREATE TRIGGER Amazonia.total
 AFTER
 INSERT ON contem  for each row
 begin
 declare total int;
-select Total into total from pedido where NEW.fk_Pedido_ID_Pedido = id_pedido;
-update pedido set Total = (select sum(valor * quantidade) from contem where fk_Pedido_ID_Pedido = NEW.fk_Pedido_ID_Pedido) where ID_Pedido = NEW.fk_Pedido_ID_Pedido;
+select Total into total from Pedido where NEW.fk_Pedido_ID_Pedido = id_Pedido;
+update Pedido set Total = (select sum(valor * quantidade) from contem where fk_Pedido_ID_Pedido = NEW.fk_Pedido_ID_Pedido) where ID_Pedido = NEW.fk_Pedido_ID_Pedido;
 END &&
 delimiter ;

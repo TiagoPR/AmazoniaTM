@@ -97,6 +97,32 @@ INSERT INTO Funcionario
 (63,'Débora Morais','R',999,10,'Rua de Penelas',3,'F','1966-07-21','2022-11-18'),
 (64,"David Abreu","R",999,11,"Rua do Salitre",3,'M','1966-07-25','2022-11-18');
 
+INSERT INTO Funcionario 
+(Funcionario_ID, Nome,Tipo,Salario, Desempenho,Endereco,fk_Armazem_Armazem_ID,genero,data_nascimento,data_comeco)
+ VALUES
+(65,'Tigas Rodrigues','G',3000,10,'Rua da Capela',4,'M','1965-01-18','2022-10-21'),
+(66,'João Moreira','D',705,9,'Rua da Travessa',4,'M','1965-02-18','2022-01-01'),
+(67,'Carlos Silva','D',705,8,'Rua 25 de abril',4,'M','1965-03-18','2022-02-02'),
+(68,'Josefina Andrade','D',705,7,'Avenida Central',4,'F','1965-04-18','2022-03-03'),
+(69,'José Pereira','D',705,6,'Rua das Veigas',4,'M','1965-05-18','2022-04-04'), 
+(70,'Carolina Peixoto','D',705,5,'Rua de Belomonte',4,'F','1965-06-18','2022-04-04'),
+(71,'António Ferreira','D',705,4,'Rua do Almada',4,'M','1965-07-18','2022-05-05'),
+(72,'Catarina Cruz','D',705,3,'Rua dos Caldeireiros',4,'F','1965-08-18','2022-06-06'),
+(73,'Pedro Meireles','D',705,2,'Rua das Carmelitas',4,'M','1965-09-18','2022-07-07'),
+(74,'Ricardo Carvalho','D',705,1,'Rua do Carvalhido',4,'M','1965-10-18','2022-08-08'),
+(75,'Anabela Pereira','D',705,0,'Rua de Camões',4,'F','1965-11-18','2022-09-09'),
+(76,'Rafael Martins','R', 705, 1,'Avenida Central',4,'M','1965-12-18','2022-10-10'),
+(77,'Bruno Marques','R',705, 2,'Rua de Camões ',4,'M','1966-01-18','2022-11-11'),
+(78,'Joel Lima','R',705,3,'Avenida da Liberdade ',4,'M','1966-02-18','2022-11-12'),
+(79,'Maria Peixoto','R',705,4,'Travessa do Carmo ',4,'F','1966-03-18','2022-11-13'),
+(80,'Sara Gonçaves','R',705,5,'Rua da Laje ',4,'F','1966-04-18','2022-11-14'),
+(81,'Ricardo Oliveira','R',705,6,'Rua da Boavista',4,'M','1966-05-18','2022-11-15'),
+(82,'Carolina Pinto','R',705,7,'Travessa do Carmo ',4,'F','1966-06-18','2022-11-16'),
+(83,'Daniela Silva','R',705,8,'Rua do Souto ',4,'F','1966-07-18','2022-11-17'),
+(84,'Paulo Barros', 'R' ,705, 9,'Praçeta do Vilar',4,'M','1966-07-19','2022-11-18'),
+(85,'Débora Morais','R',999,10,'Rua de Penelas',4,'F','1966-07-21','2022-11-18'),
+(86,"David Abreu","R",999,11,"Rua do Salitre",4,'M','1966-07-25','2022-11-18');
+
 insert into Cliente (ID_Cliente,Nome,Email,Telemovel,Rua,Cod_Postal,Genero)
 	values
     (31,"Maria do carmo","maria1234@hotmail.com",934716999,"rua da casa nova","4715-222","F"),
@@ -149,45 +175,45 @@ values
 (29,"Mikael Jakson","mikjak@gmail.com",495222123,"Rua velhaaa","9101-039","M"),
 (30,"Mikaelison Jakson","miklisonjak@gmail.com",491222123,"Rua novaa","9121-039","M");
 
-Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao, Estado,  Data_Entrega, Data_Pedido, Data_envio, fk_Cliente_ID_Cliente)
+Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao, Estado,  Data_Entrega, Data_Pedido, Data_envio, fk_Cliente_ID_Cliente,fk_Armazem_Armazem_ID)
 values
-(33,"rua das flores novas",null,"P",null,"2021-01-01",null,22),
-(34,"rua das casas neu",null,"P",null,"2021-03-11",null,15),
-(35,"rua das alheiras","NATAL2023","E","2022-01-01","2021-01-01","2021-06-06",11),
-(36,"rua das ",null,"D",null,"2022-10-01","2022-10-02",22),
-(37,"rua azul",null,"D",null,"2022-03-22","2022-03-31",22);
+(33,"rua das flores novas",null,"P",null,"2021-01-01",null,22,4),
+(34,"rua das casas neu",null,"P",null,"2021-03-11",null,15,4),
+(35,"rua das alheiras","NATAL2023","E","2022-01-01","2021-01-01","2021-06-06",11,4),
+(36,"rua das ",null,"D",null,"2022-10-01","2022-10-02",22,4),
+(37,"rua azul",null,"D",null,"2022-03-22","2022-03-31",22,4);
 
-Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao,Estado,Data_Entrega,Data_Pedido,Data_Envio,fk_Cliente_ID_Cliente)
+Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao,Estado,Data_Entrega,Data_Pedido,Data_Envio,fk_Cliente_ID_Cliente,fk_Armazem_Armazem_ID)
 values 
-(1,"Rua Doutor Damasceno Ferreiro","NATAL2023","P",NULL,"2023-01-01",NULL,1),
-(2,"Rua da ponte",NULL,"E","2023-01-03","2023-01-02","2023-01-03",2);
+(1,"Rua Doutor Damasceno Ferreiro","NATAL2023","P",NULL,"2023-01-01",NULL,1,1),
+(2,"Rua da ponte",NULL,"E","2023-01-03","2023-01-02","2023-01-03",2,1);
 
 
 
-Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao,Estado,Data_Entrega,Data_Pedido,Data_Envio,fk_Cliente_ID_Cliente)
+Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao,Estado,Data_Entrega,Data_Pedido,Data_Envio,fk_Cliente_ID_Cliente,fk_Armazem_Armazem_ID)
 values 
-(3,"Rua da fonte",NULL,"E","2023-01-05","2023-01-04","2023-01-05",3),
-(4,"Rua da fonte seca ",NULL,"D",NULL,"2023-01-02","2023-01-03",4),
-(5,"Rua da fonte molhada ","PASCO2022","D",NULL,"2023-02-04","2023-02-05",5),
-(6,"Rua das fontes molhadas ",NULL,"E","2023-01-05","2023-01-04","2023-01-05",6),
-(7,"Rua das fontes secas ",NULL,"E","2023-02-03","2023-02-01","2023-02-02",7),
-(8,"Rua das fontes não secas ","NATAL2023","E","2023-02-03","2023-02-01","2023-02-01",8),
-(9,"Rua da fonte não molhada ","PASCO2022","D",NULL,"2023-02-02","2023-02-03",9),
-(10,"Rua das pontes não molhada",NULL,"E","2023-01-11","2023-01-10","2023-01-11",9);
+(3,"Rua da fonte",NULL,"E","2023-01-05","2023-01-04","2023-01-05",3,1),
+(4,"Rua da fonte seca ",NULL,"D",NULL,"2023-01-02","2023-01-03",4,1),
+(5,"Rua da fonte molhada ","PASCO2022","D",NULL,"2023-02-04","2023-02-05",5,1),
+(6,"Rua das fontes molhadas ",NULL,"E","2023-01-05","2023-01-04","2023-01-05",6,1),
+(7,"Rua das fontes secas ",NULL,"E","2023-02-03","2023-02-01","2023-02-02",7,1),
+(8,"Rua das fontes não secas ","NATAL2023","E","2023-02-03","2023-02-01","2023-02-01",8,1),
+(9,"Rua da fonte não molhada ","PASCO2022","D",NULL,"2023-02-02","2023-02-03",9,1),
+(10,"Rua das pontes não molhada",NULL,"E","2023-01-11","2023-01-10","2023-01-11",9,1);
 
-Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao,Estado,Total,Data_Entrega,Data_Pedido,Data_Envio,fk_Cliente_ID_Cliente)
+Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao,Estado,Total,Data_Entrega,Data_Pedido,Data_Envio,fk_Cliente_ID_Cliente,fk_Armazem_Armazem_ID)
 values
-(11,"Rua da lagoa",null,"E",null,"2021-04-29","2021-04-27","2021-04-27",11),
-(12,"Rua das fontes","NATAL2022","E",null,"2022-05-10","2022-05-09","2022-05-10",12),
-(13,"Rua da cruz",null,"P",null,null,"2023-01-09",null,13),
-(14,"Rua de benfica","PASCO2022","D",null,null,"2023-01-09","2023-01-09",14),
-(15,"Rua Garret","NATAL2022","E",null,"2022-12-25","2022-12-19","2022-12-21",15),
-(16,"Rua dos herois","BLACK2022","E",null,"2022-11-12","2022-11-11","2022-12-11",16),
-(17,"Rua dos bacolheiros",null,"P",null,null,"2022-12-19",null,17),
-(18,"Rua do carmo","NATAL2022","E",null,"2022-12-25","2022-12-19","2022-12-21",18),
-(19,"Rua da betesga","PASCO2022","E",null,"2022-04-10","2022-04-09","2022-04-09",19),
-(20,"Rua da satelite","BLACK2022","D",null,null,"2022-11-30","2022-11-30",20),
-(21,"Rua Ferreira","NATAL2022","E",null,"2022-12-25","2022-12-19","2022-12-21",21);
+(11,"Rua da lagoa",null,"E",null,"2021-04-29","2021-04-27","2021-04-27",11,2),
+(12,"Rua das fontes","NATAL2022","E",null,"2022-05-10","2022-05-09","2022-05-10",12,2),
+(13,"Rua da cruz",null,"P",null,null,"2023-01-09",null,13,2),
+(14,"Rua de benfica","PASCO2022","D",null,null,"2023-01-09","2023-01-09",14,2),
+(15,"Rua Garret","NATAL2022","E",null,"2022-12-25","2022-12-19","2022-12-21",15,2),
+(16,"Rua dos herois","BLACK2022","E",null,"2022-11-12","2022-11-11","2022-12-11",16,2),
+(17,"Rua dos bacolheiros",null,"P",null,null,"2022-12-19",null,17,2),
+(18,"Rua do carmo","NATAL2022","E",null,"2022-12-25","2022-12-19","2022-12-21",18,2),
+(19,"Rua da betesga","PASCO2022","E",null,"2022-04-10","2022-04-09","2022-04-09",19,2),
+(20,"Rua da satelite","BLACK2022","D",null,null,"2022-11-30","2022-11-30",20,2),
+(21,"Rua Ferreira","NATAL2022","E",null,"2022-12-25","2022-12-19","2022-12-21",21,2);
 
 Insert into Item(Item_ID, Preco, Tipo, Descricao)
 values
@@ -198,23 +224,23 @@ values
 (19,10,"Utensilios","Pack de louca"),
 (20,31,"Limpeza","Aspirador Stilver");
 
-Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao,Estado,Total,Data_Entrega,Data_Pedido,Data_Envio,fk_Cliente_ID_Cliente)
+Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao,Estado,Total,Data_Entrega,Data_Pedido,Data_Envio,fk_Cliente_ID_Cliente,fk_Armazem_Armazem_ID)
 values
-(22,'Rua da Capela','BLACK2022', 'E',NULL,"2022-11-10","2022-11-09","2022-11-09",22),
-(23,'Rua da Capela','BLACK2022', 'E',NULL,"2022-11-11","2022-11-10","2022-11-10",23),
-(24,'Rua da Pedrinha','BLACK2022','E',NULL,"2022-11-12","2022-11-12","2022-11-12",24),
-(25,'Rua dos Barbosas','BLACK2022','E',NULL,"2022-11-22","2022-11-21","2022-11-21",25),
-(26,'Rua da Pedreira','PASCO2022','D',NULL,NULL,"2022-12-01","2022-12-01",26),
-(27,'Rua da Caparica','PASCO2022','D',NULL,NULL,"2022-12-02","2022-12-02",27),
-(28,'Rua 5 de Outubro','PASCO2022','D',NULL,NULL,"2022-12-02","2022-12-02",28),
-(29,'Rua dos Capelistas','PASCO2022','P',NULL,NULL,"2022-12-24",NULL,29),
-(30,'Rua dos Irmaos','NATAL2023','P',NULL,"2022-11-10","2022-12-25",NULL,30),
-(31,'Rua Antonio Padre Vieira','NATAL2023','P',NULL,NULL,"2022-12-31",NULL,31);
+(22,'Rua da Capela','BLACK2022', 'E',NULL,"2022-11-10","2022-11-09","2022-11-09",22,3),
+(23,'Rua da Capela','BLACK2022', 'E',NULL,"2022-11-11","2022-11-10","2022-11-10",23,3),
+(24,'Rua da Pedrinha','BLACK2022','E',NULL,"2022-11-12","2022-11-12","2022-11-12",24,3),
+(25,'Rua dos Barbosas','BLACK2022','E',NULL,"2022-11-22","2022-11-21","2022-11-21",25,3),
+(26,'Rua da Pedreira','PASCO2022','D',NULL,NULL,"2022-12-01","2022-12-01",26,3),
+(27,'Rua da Caparica','PASCO2022','D',NULL,NULL,"2022-12-02","2022-12-02",27,3),
+(28,'Rua 5 de Outubro','PASCO2022','D',NULL,NULL,"2022-12-02","2022-12-02",28,3),
+(29,'Rua dos Capelistas','PASCO2022','P',NULL,NULL,"2022-12-24",NULL,29,3),
+(30,'Rua dos Irmaos','NATAL2023','P',NULL,"2022-11-10","2022-12-25",NULL,30,3),
+(31,'Rua Antonio Padre Vieira','NATAL2023','P',NULL,NULL,"2022-12-31",NULL,31,3);
 
 
-Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao, Estado,  Data_Entrega, Data_Pedido, Data_envio, fk_Cliente_ID_Cliente)
+Insert into Pedido (ID_Pedido, Endereco_Entrega, Cupao, Estado,  Data_Entrega, Data_Pedido, Data_envio, fk_Cliente_ID_Cliente,fk_Armazem_Armazem_ID)
 values
-(32,"rua das flores novas",null,"P",null,"2021-01-01",null,1);
+(32,"rua das flores novas",null,"P",null,"2021-01-01",null,1,4);
 
 Insert into contem (fk_Item_Item_ID, fk_Pedido_ID_Pedido, Quantidade, Valor, IVA)
 values
@@ -466,3 +492,16 @@ values
 (42,21),
 (41,21),
 (31,21);
+
+
+Insert into tem (fk_Funcionario_Funcionario_ID, fk_Pedido_ID_PEDIDO)
+values
+(65,33),
+(66,33),
+(67,34),
+(68,34),
+(69,35),
+(70,36),
+(71,36),
+(72,37),
+(73,37);
