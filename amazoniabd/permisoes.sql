@@ -30,7 +30,7 @@ CREATE USER 'JeffersonBazos'@'localhost';
 
 SET PASSWORD FOR 'JeffersonBazos'@'localhost' = 'JeffersonBazos1234';
 
-GRANT ALL ON *.* TO 'JeffersonBazos'@'localhost';
+GRANT ALL ON *.* TO 'JeffersonBazos'@'localhost'; #RC 07
 
 CREATE USER 'funcionario'@'localhost';
 
@@ -45,3 +45,5 @@ SET PASSWORD FOR 'distribuidor'@'localhost' = 'distribuidor1234';
 
 GRANT UPDATE (Estado, Data_Entrega, Data_Pedido, Data_Envio) 
 	ON Amazonia.Pedido TO 'distribuidor'@'localhost';
+
+grant select on Amazonia.Pedido to 'funcionario'@'localhost';
