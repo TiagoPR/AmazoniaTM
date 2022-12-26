@@ -1,4 +1,4 @@
-CREATE USER 'gestor'@'localhost';
+	CREATE USER 'gestor'@'localhost';
 
 SET PASSWORD FOR 'gestor'@'localhost' = 'gestor1234';
 
@@ -10,7 +10,7 @@ GRANT SELECT, INSERT, UPDATE ON Amazonia.armazem TO 'gestor'@'localhost'; # RC09
 
 GRANT SELECT ON Amazonia.Pedido TO 'gestor'@'localhost'; # RC05
 
-GRANT UPDATE (Estado, Data_Entrega, Data_Pedido, Data_Envio) 
+GRANT UPDATE (Estado, Data_Entrega, Data_Envio) 
 	ON Amazonia.Pedido TO 'gestor'@'localhost';
 	
 GRANT SELECT, INSERT, UPDATE ON Amazonia.Item TO 'gestor'@'localhost'; # RC05
