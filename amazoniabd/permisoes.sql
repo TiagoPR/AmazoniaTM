@@ -17,14 +17,14 @@ GRANT SELECT, INSERT, UPDATE ON Amazonia.Item TO 'gestor'@'localhost'; # RC05
 
 GRANT SELECT, INSERT, UPDATE ON Amazonia.possui TO 'gestor'@'localhost'; # RC05
 
---CREATE USER 'cliente'@'localhost';
---#SET PASSWORD FOR 'cliente'@'localhost' = 'cliente1234';
+CREATE USER 'cliente'@'localhost';
+SET PASSWORD FOR 'cliente'@'localhost' = 'cliente1234';
 
---GRANT SELECT, INSERT ON Amazonia.Cliente TO 'cliente'@'localhost'; # RC09
+GRANT UPDATE, INSERT ON Amazonia.Cliente TO 'cliente'@'localhost'; # RC02
 
---GRANT SELECT, INSERT ON Amazonia.contem TO 'cliente'@'localhost'; # RC09
+# GRANT SELECT, INSERT ON Amazonia.contem TO 'cliente'@'localhost'; # RC09
 
---GRANT SELECT, INSERT ON Amazonia.Pedido TO 'cliente'@'localhost'; # RC09
+# GRANT SELECT, INSERT ON Amazonia.Pedido TO 'cliente'@'localhost'; # RC09
 
 CREATE USER 'JeffersonBazos'@'localhost';
 
