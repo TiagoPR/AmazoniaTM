@@ -22,7 +22,6 @@ CREATE TABLE Cliente (
     Nome VARCHAR(45),
     Email VARCHAR(45),
     Telemovel INTEGER,
-    Metodos_Pagamento VARCHAR(45),
     Rua VARCHAR(45),
     Cod_Postal varchar(8)
 );
@@ -133,7 +132,13 @@ AFTER
 INSERT ON contem  for each row
 begin
 declare total int;
+declare cupao1 varchar(9);
 select Total into total from Pedido where NEW.fk_Pedido_ID_Pedido = id_Pedido;
+select Cupao into cupao1 from Pedido;
+if cupao1 = null then
 update Pedido set Total = (select sum(valor * quantidade) from contem where fk_Pedido_ID_Pedido = NEW.fk_Pedido_ID_Pedido) where ID_Pedido = NEW.fk_Pedido_ID_Pedido;
+else
+update Pedido set Total = (select sum(valor * quantidade)*0.8 from contem where fk_Pedido_ID_Pedido = NEW.fk_Pedido_ID_Pedido) where ID_Pedido = NEW.fk_Pedido_ID_Pedido;
+end if;
 END &&
 delimiter ;
