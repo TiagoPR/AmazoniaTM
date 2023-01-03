@@ -29,14 +29,14 @@ delimiter ;
 
 #Falta group by e order by
 #τ a.Armazem_ID desc (π sum (p.total) a.Armazem_ID ( (ρ p (Pedido) ⨝p.id_pedido=t.fk_pedido ρ t (tem) ⨝t.fk_Funcionario=f.Funcionario_ID ρ f (Funcionario) ⨝f.Armazem_Funcinario=a.Armazem_ID ρ a (Armazem))
-Select sum(p.total), a.Armazem_ID From Pedido p INNER JOIN tem t ON p.id_pedido=t.fk_pedido INNER JOIN Funcionario f ON t.fk_Funcionario=f.Funcionario_ID INNER JOIN Armazem a ON f.Armazem_Funcinario=a.Armazem_ID
-GROUP BY a.Armazem_ID 
-ORDER BY a.Armazem_ID Desc
+#Select sum(p.total), a.Armazem_ID From Pedido p INNER JOIN tem t ON p.id_pedido=t.fk_pedido INNER JOIN Funcionario f ON t.fk_Funcionario=f.Funcionario_ID INNER JOIN Armazem a ON f.Armazem_Funcinario=a.Armazem_ID
+#GROUP BY a.Armazem_ID 
+#ORDER BY a.Armazem_ID Desc;
 
 
 #πfk_Pedido_ID_Pedido (σ fk_Funcionario_Funcionario_ID = id_func (tem)) com qualquer id_func, essa procedure diz a quais pedidos um funcionario esta relacionado
 delimiter &&
-CREATE PROCEDURE `new_procedure` (IN id_func INT)
+CREATE PROCEDURE `PedFunc` (IN id_func INT)
 BEGIN
 SELECT fk_Pedido_ID_Pedido FROM tem where fk_Funcionario_Funcionario_ID = id_func;
 END &&

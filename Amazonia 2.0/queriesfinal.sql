@@ -122,7 +122,9 @@ order by
 END &&
 delimiter ;
 
+#queries genericas
 
+select * from possui;
 
 
 

@@ -13,7 +13,8 @@ BEGIN
    #RETURN (select fk_Armazem_Armazem_ID from funcionario where Funcionario_ID = funcionario);
    # π fk_Armazem_Armazem_ID σ ID_Pedido = id_ped pedido   	NOVA VERSÃO PQ ANTES NAO TINHA FK_ARMAZEM NO PEDIDO
    return (select fk_Armazem_Armazem_ID from pedido where ID_Pedido = id_ped);
-END; &&
+END; &
+delimiter ;
 
 select * from funcionario
 select * from tem
@@ -40,6 +41,7 @@ group by
 order by
 	TotalItems DESC;
 END; && 
+delimiter ;
 
 select * from contem;
 # drop procedure items_mais_vendidos;

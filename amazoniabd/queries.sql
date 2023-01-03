@@ -53,6 +53,8 @@ delimiter ;
 
 #(ρ q←quantidade v<- valor(π quantidade , valor (σ 1 = fk_Pedido_ID_Pedido (contem)))
 select quantidade as q ,valor as v from contem where fk_Pedido_ID_Pedido = 1;
+
+
 SELECT *
 FROM possui
 Group By fk_Armazem_Armazem_ID

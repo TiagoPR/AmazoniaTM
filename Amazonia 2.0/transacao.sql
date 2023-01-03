@@ -19,8 +19,5 @@ update possui
     SET stock = vstock - Quantidade
     WHERE fk_Item_Item_ID = item;
         
-END$$
+END $$
 DELIMITER ;
-
-select * from contem;
-select * from possui;
