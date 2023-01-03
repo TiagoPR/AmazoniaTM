@@ -6,13 +6,13 @@ CREATE FUNCTION armazem_do_pedido ( id_ped INT )
 RETURNS INT
 DETERMINISTIC
 BEGIN
-   DECLARE funcionario INT;
+   #DECLARE funcionario INT;
    # σ ROWNUM() > 0 and ROWNUM() ≤ 1 π fk_Pedido_ID_Pedido σ fk_Pedido_ID_Pedido = id_pedido tem
-   SET funcionario = (select fk_Funcionario_Funcionario_ID from tem where fk_Pedido_ID_Pedido = id_pedido limit 1); # porque tem 3 funcionarios em 1 pedido
+   #SET funcionario = (select fk_Funcionario_Funcionario_ID from tem where fk_Pedido_ID_Pedido = id_pedido limit 1); # porque tem 3 funcionarios em 1 pedido
    # π fk_Armazem_Armazem_ID σ Funcionario_ID = funcionario funcionario
-   RETURN (select fk_Armazem_Armazem_ID from funcionario where Funcionario_ID = funcionario);
-   # π fk_Armazem_Armazem_ID σ ID_Pedido = id_ped pedido
-   select fk_Armazem_Armazem_ID from pedido where ID_Pedido = id_ped;
+   #RETURN (select fk_Armazem_Armazem_ID from funcionario where Funcionario_ID = funcionario);
+   # π fk_Armazem_Armazem_ID σ ID_Pedido = id_ped pedido   	NOVA VERSÃO PQ ANTES NAO TINHA FK_ARMAZEM NO PEDIDO
+   return (select fk_Armazem_Armazem_ID from pedido where ID_Pedido = id_ped);
 END; &&
 
 select * from funcionario
@@ -39,7 +39,7 @@ group by
     I.Item_ID 
 order by
 	TotalItems DESC;
-END && 
+END; && 
 
 select * from contem;
 # drop procedure items_mais_vendidos;
@@ -67,7 +67,7 @@ group by
     F.Funcionario_ID 
 order by
 	TotalPedidos DESC;
-END &&
+END; &&
 
 select * from tem where fk_Funcionario_Funcionario_ID = 1;
 
