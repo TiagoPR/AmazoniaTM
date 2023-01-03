@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `Amazonia`.`Cliente` (
   `Telemovel` INT NULL DEFAULT NULL,
   `Rua` VARCHAR(45) NULL DEFAULT NULL,
   `Cod_Postal` VARCHAR(45) NULL DEFAULT NULL,
-  `Genero` VARCHAR(45) NOT NULL,
+  `Genero` VARCHAR(1) NOT NULL,
   PRIMARY KEY (`ID_Cliente`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -134,19 +134,16 @@ CREATE TABLE IF NOT EXISTS `Amazonia`.`possui` (
   `stock` INT NOT NULL,
   `fk_Armazem_Armazem_ID` INT NOT NULL,
   `fk_Item_Item_ID` INT NOT NULL,
-  `Armazem_Armazem_ID` INT NOT NULL,
-  `Item_Item_ID` INT NOT NULL,
   PRIMARY KEY (`fk_Armazem_Armazem_ID`, `fk_Item_Item_ID`),
-  UNIQUE INDEX `fk_Armazem_Armazem_ID` (`fk_Armazem_Armazem_ID` ASC, `fk_Item_Item_ID` ASC) VISIBLE,
-  INDEX `fk_possui_Armazem1_idx` (`Armazem_Armazem_ID` ASC) VISIBLE,
-  INDEX `fk_possui_Item1_idx` (`Item_Item_ID` ASC) VISIBLE,
+  INDEX `fk_possui_Armazem1_idx` (`fk_Armazem_Armazem_ID` ASC) VISIBLE,
+  INDEX `fk_possui_Item1_idx` (`fk_Item_Item_ID` ASC) VISIBLE,
   CONSTRAINT `fk_possui_Armazem1`
-    FOREIGN KEY (`Armazem_Armazem_ID`)
+    FOREIGN KEY (`fk_Armazem_Armazem_ID`)
     REFERENCES `Amazonia`.`Armazem` (`Armazem_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_possui_Item1`
-    FOREIGN KEY (`Item_Item_ID`)
+    FOREIGN KEY (`fk_Item_Item_ID`)
     REFERENCES `Amazonia`.`Item` (`Item_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -180,6 +177,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 # Trigger sempre que adicionado pedido atualiza o campo `valor`
+
 delimiter &&
 CREATE TRIGGER Amazonia.total
 AFTER
@@ -188,7 +186,7 @@ begin
 declare total int;
 declare cupao1 varchar(9);
 select Total into total from Pedido where NEW.fk_Pedido_ID_Pedido = id_Pedido;
-select Cupao into cupao1 from Pedido;
+select Cupao into cupao1 from Pedido where new.fk_Pedido_ID_Pedido = id_Pedido;
 if cupao1 = null then
 update Pedido set Total = (select sum(valor * quantidade) from contem where fk_Pedido_ID_Pedido = NEW.fk_Pedido_ID_Pedido) where ID_Pedido = NEW.fk_Pedido_ID_Pedido;
 else
