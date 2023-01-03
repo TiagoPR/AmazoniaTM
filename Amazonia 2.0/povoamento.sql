@@ -283,7 +283,6 @@ Insert into contem (fk_Item_Item_ID, fk_Pedido_ID_Pedido, Quantidade, Valor, IVA
 values
 (10,22,10,1500,23),
 (2,23,20,2000,12),
-
 (14,25,1,5,2),
 (13,26,100,800,1),
 (19,27,2,20,7),

@@ -16,7 +16,7 @@ FROM ( Armazem AS a
 INNER JOIN Funcionario AS f ON  a.Armazem_ID = f.fk_Armazem_Armazem_ID )
 WHERE a.Armazem_ID = '2';
 
-# essa procedure diz a quais pedidos um funcionario esta relacionado
+# este procedure diz a quais pedidos um funcionario esta relacionado
 delimiter &&
 CREATE PROCEDURE `PedFunc` (IN id_func INT)
 BEGIN
@@ -24,14 +24,25 @@ SELECT fk_Pedido_ID_Pedido FROM tem where fk_Funcionario_Funcionario_ID = id_fun
 END &&
 delimiter ;
 
+# este procedure diz os funcionarios que estao associados a um pedido
+delimiter &&
+CREATE PROCEDURE `FuncPed` (IN id_ped INT)
+BEGIN
+SELECT fk_Funcionario_Funcionario_ID FROM tem where fk_Pedido_ID_Pedido= id_ped;
+END &&
+delimiter ;
+
+
 #Numero de Clientes da AmazoniaTM
 SELECT COUNT(*)
 FROM Cliente;
 
 #ordenação dos funcionarios por desempenho
-select Nome from Funcionario order by desempenho desc;
+select Nome 
+from Funcionario 
+order by desempenho desc;
 
-#Items mais vendidos por pedido nao quantidade
+#Itens em maior numero de pedidos 
 SELECT Descricao, count(Item_ID)
 FROM Item
 INNER JOIN contem ON contem.fk_Item_Item_ID = Item.Item_ID 
@@ -57,12 +68,14 @@ drop view if exists top_gastos;
 create view top_gastos as
 select fk_Cliente_ID_Cliente, sum(total) as gasto
 from Pedido
-group by fk_Cliente_ID_Cliente;
+group by fk_Cliente_ID_Cliente
+Limit 10;
+
 
 #seleciona quantidade de um item de determinado pedido naquela compra
 select quantidade as q from contem where fk_Pedido_ID_Pedido = 34;
 
-#Seleciona o preço do peido
+#Seleciona o preço do pedido
 select total from Pedido;
 
 # Conhecer o armazém em que o pedido está relacionado 
@@ -97,8 +110,10 @@ order by
 END && 
 delimiter ;
 
-# Obter uma relação entre salário e desempenho de cada funcionarios por tipo – Tigas
-select Funcionario_ID, Salario/Desempenho as Quota from Funcionario;
+# Obter uma relação entre salário e desempenho de cada funcionario 
+select Funcionario_ID, Salario/Desempenho as Quota 
+from Funcionario;
+
 
 # Funcionarios com mais pedidos associados
 DELIMITER && 
@@ -122,9 +137,39 @@ order by
 END &&
 delimiter ;
 
-#queries genericas
+# itens de um armazem 
+SELECT Nome FROM funcionario
+UNION
+SELECT Nome FROM Cliente
+Order by nome;
 
-select * from possui;
+# Obter itens de um armazem
+SELECT i.Item_ID,i.preco,i.descricao,i.tipo,p.pos,p.stock
+From( Item as i
+INNER JOIN possui as p on p.fk_Item_Item_ID = i.Item_ID)
+WHERE p.fk_Armazem_Armazem_ID = 2;
+
+#view dos piores funcionarios
+Drop View if exists view_pioresfunc;
+CREATE VIEW view_pioresfunc
+AS
+SELECT Nome,Desempenho,data_comeco,fK_Armazem_Armazem_ID
+From Funcionario
+where Desempenho=0 or Desempenho=1 
+Order by Desempenho;
+
+#view dos itens mais caros
+Drop View if exists view_itensmaiscaros;
+CREATE VIEW view_itensmaiscaros
+AS
+Select preco,descricao
+From Item
+Order by preco Desc
+Limit 5;
+
+
+#queries genericas
+select * from pedido;
 
 
 
