@@ -138,7 +138,7 @@ END &&
 delimiter ;
 
 # itens de um armazem 
-SELECT Nome FROM funcionario
+SELECT Nome FROM Funcionario
 UNION
 SELECT Nome FROM Cliente
 Order by nome;
@@ -169,7 +169,7 @@ Limit 5;
 
 
 #queries genericas
-select * from pedido;
+select * from Pedido;
 
 
 
